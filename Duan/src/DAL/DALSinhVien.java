@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  * @author Uzu
  */
 public class DALSinhVien {
-    public static ResultSet ShowHoaDon(){
+    public static ResultSet ShowSinhVien(){
         String query = "Select * from SinhVien";
         return duan.Duan.connection.ExcuteQuerySelect(query);
     }
