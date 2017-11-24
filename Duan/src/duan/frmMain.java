@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -876,7 +877,7 @@ public class frmMain extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(255, 0, 0));
         jLabel30.setText("Chuyên nghành");
 
-        txt_GV_TimKiem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_GV_TimKiem.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), null, null));
         txt_GV_TimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_GV_TimKiemActionPerformed(evt);
@@ -891,22 +892,22 @@ public class frmMain extends javax.swing.JFrame {
         jLabel32.setForeground(new java.awt.Color(255, 0, 0));
         jLabel32.setText("Mã giảng viên");
 
-        txt_GV_MaGV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_GV_MaGV.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_GV_MaGV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_GV_MaGVActionPerformed(evt);
             }
         });
 
-        txt_GV_TenGV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_GV_TenGV.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txt_GV_DiaChi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_GV_DiaChi.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txt_GV_NgaySinh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_GV_NgaySinh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txt_GV_SDT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_GV_SDT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txt_GV_ChuyenNghanh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txt_GV_ChuyenNghanh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_GV_ChuyenNghanh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_GV_ChuyenNghanhActionPerformed(evt);
@@ -1052,6 +1053,11 @@ public class frmMain extends javax.swing.JFrame {
                 "STT", "Mã giảng viên", "Tên giảng viên", "Địa chỉ", "Ngày sinh", "Số điện thoại", "Chuyên nghành"
             }
         ));
+        tbl_GV_DanhSach.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_GV_DanhSachMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_GV_DanhSach);
         if (tbl_GV_DanhSach.getColumnModel().getColumnCount() > 0) {
             tbl_GV_DanhSach.getColumnModel().getColumn(0).setMaxWidth(50);
@@ -2924,7 +2930,23 @@ public class frmMain extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         NgayThang();
+        
+        //Load data table Giảng viên
+        DefaultTableModel tableModel = (DefaultTableModel)tbl_GV_DanhSach.getModel();
+        BLL.BLLGiangVien.LoadData(tableModel);
     }//GEN-LAST:event_formWindowOpened
+
+    private void tbl_GV_DanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_GV_DanhSachMouseClicked
+        int CacDongDuocChon[] = tbl_GV_DanhSach.getSelectedRows();
+        int dong = tbl_GV_DanhSach.getSelectedRow();
+        
+        txt_GV_MaGV.setText(tbl_GV_DanhSach.getValueAt(dong, 1).toString());
+        txt_GV_TenGV.setText(tbl_GV_DanhSach.getValueAt(dong, 2).toString());
+        txt_GV_DiaChi.setText(tbl_GV_DanhSach.getValueAt(dong, 3).toString());
+        txt_GV_NgaySinh.setText(tbl_GV_DanhSach.getValueAt(dong, 4).toString());
+        txt_GV_SDT.setText(tbl_GV_DanhSach.getValueAt(dong, 5).toString());
+        txt_GV_ChuyenNghanh.setText(tbl_GV_DanhSach.getValueAt(dong, 6).toString());
+    }//GEN-LAST:event_tbl_GV_DanhSachMouseClicked
 
     /**
      * @param args the command line arguments

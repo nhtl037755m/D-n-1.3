@@ -23,7 +23,7 @@ public class Duan {
     public static frmDangNhap frmDN = new frmDangNhap();
     public static frmMain frmMain = new frmMain(); 
     public static void main(String[] args) {
-        frmDN.setVisible(true);
+        frmMain.setVisible(true);
 //          frmDangNhap frDN = new frmDangNhap();
 //          frDN.setVisible(true);
     }
