@@ -2959,6 +2959,9 @@ public class frmMain extends javax.swing.JFrame {
         //Load data table Giảng viên
         DefaultTableModel tableModel = (DefaultTableModel)tbl_GV_DanhSach.getModel();
         BLL.BLLGiangVien.LoadData(tableModel);
+        
+        DefaultTableModel tableModel1 = (DefaultTableModel) tbl_SV_DanhSach.getModel();
+        BLL.BLLSinhVien.SelectSinhVien(tableModel1);
     }//GEN-LAST:event_formWindowOpened
 
     private void tbl_GV_DanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_GV_DanhSachMouseClicked
