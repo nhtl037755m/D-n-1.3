@@ -802,6 +802,11 @@ public class frmMain extends javax.swing.JFrame {
                 "STT", "Mã sinh viên", "Tên sinh viên", "Ngày sinh", "Địa chỉ", "Số CMND", "Số điện thoại", "Giới tính", "Phụ huynh", "Tên nghành", "Chuyên nghành", "Ngày nhập học", "Tình trạng học", "Các môn đã qua", "Nợ môn, học lại"
             }
         ));
+        tbl_SV_DanhSach.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_SV_DanhSachMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_SV_DanhSach);
         if (tbl_SV_DanhSach.getColumnModel().getColumnCount() > 0) {
             tbl_SV_DanhSach.getColumnModel().getColumn(0).setMaxWidth(45);
@@ -2950,6 +2955,10 @@ public class frmMain extends javax.swing.JFrame {
         txt_GV_SDT.setText(tbl_GV_DanhSach.getValueAt(dong, 5).toString());
         txt_GV_ChuyenNghanh.setText(tbl_GV_DanhSach.getValueAt(dong, 6).toString());
     }//GEN-LAST:event_tbl_GV_DanhSachMouseClicked
+
+    private void tbl_SV_DanhSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_SV_DanhSachMouseClicked
+        
+    }//GEN-LAST:event_tbl_SV_DanhSachMouseClicked
 
     /**
      * @param args the command line arguments
