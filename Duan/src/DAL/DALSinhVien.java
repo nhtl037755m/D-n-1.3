@@ -16,4 +16,5 @@ public class DALSinhVien {
         String query = "Select * from SinhVien";
         return duan.Duan.connection.ExcuteQuerySelect(query);
     }
+    
 }
