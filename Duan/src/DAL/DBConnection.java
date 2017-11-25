@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
     //Tạo chuỗi kết nối
-    String connectionString = "jdbc:sqlserver://ADMIN-PC:1433;DatabaseName=DuAn;"
+    String connectionString = "jdbc:sqlserver://TRIEUVVPK00846:1433;DatabaseName=DuAn;"
             + "user=sa; password=123456";
     //Tạo biến kết nối
     Connection conn;
