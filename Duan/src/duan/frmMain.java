@@ -6,6 +6,7 @@
 package duan;
 
 import static java.lang.Thread.sleep;
+import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JFrame;
@@ -36,6 +37,7 @@ public class frmMain extends javax.swing.JFrame {
 
         jTextField60 = new javax.swing.JTextField();
         jTextField62 = new javax.swing.JTextField();
+        rbn_GV = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -115,12 +117,9 @@ public class frmMain extends javax.swing.JFrame {
         txt_GV_ChuyenNghanh = new javax.swing.JTextField();
         jPanel20 = new javax.swing.JPanel();
         btn_GV_ChonAnh = new javax.swing.JButton();
-        cbx_GV_TheoMaGV = new javax.swing.JCheckBox();
-        cbx_GV_TheoTenGV = new javax.swing.JCheckBox();
-        cbx_GV_TheoChuyenNghanh = new javax.swing.JCheckBox();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rbn_GV_TheoMa = new javax.swing.JRadioButton();
+        rbn_GV_TheoChuyenNganh = new javax.swing.JRadioButton();
+        rbn_GV_TheoTen = new javax.swing.JRadioButton();
         jPanel28 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_GV_DanhSach = new javax.swing.JTable();
@@ -891,6 +890,11 @@ public class frmMain extends javax.swing.JFrame {
                 txt_GV_TimKiemActionPerformed(evt);
             }
         });
+        txt_GV_TimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_GV_TimKiemKeyReleased(evt);
+            }
+        });
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 0, 0));
@@ -941,33 +945,24 @@ public class frmMain extends javax.swing.JFrame {
         btn_GV_ChonAnh.setText("Chọn ảnh");
         btn_GV_ChonAnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
 
-        cbx_GV_TheoMaGV.setBackground(new java.awt.Color(255, 255, 255));
-        cbx_GV_TheoMaGV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbx_GV_TheoMaGV.setText("Theo Mã GV");
+        rbn_GV.add(rbn_GV_TheoMa);
+        rbn_GV_TheoMa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbn_GV_TheoMa.setText("Theo Mã GV");
 
-        cbx_GV_TheoTenGV.setBackground(new java.awt.Color(255, 255, 255));
-        cbx_GV_TheoTenGV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbx_GV_TheoTenGV.setText("Theo Tên GV");
+        rbn_GV.add(rbn_GV_TheoChuyenNganh);
+        rbn_GV_TheoChuyenNganh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbn_GV_TheoChuyenNganh.setText("Theo Chuyên Ngành");
 
-        cbx_GV_TheoChuyenNghanh.setBackground(new java.awt.Color(255, 255, 255));
-        cbx_GV_TheoChuyenNghanh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbx_GV_TheoChuyenNghanh.setText("Theo Chuyên Nghành");
-
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton1.setText("Theo Mã GV");
-
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton2.setText("Theo Chuyên Ngành");
-
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton3.setText("Theo Tên GV");
+        rbn_GV.add(rbn_GV_TheoTen);
+        rbn_GV_TheoTen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbn_GV_TheoTen.setText("Theo Tên GV");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -977,9 +972,11 @@ public class frmMain extends javax.swing.JFrame {
                     .addComponent(jLabel31)
                     .addComponent(jLabel28)
                     .addComponent(jLabel30))
-                .addGap(57, 57, 57)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_GV_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_GV_NgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_GV_ChuyenNghanh, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txt_GV_TenGV, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
@@ -987,32 +984,17 @@ public class frmMain extends javax.swing.JFrame {
                             .addComponent(txt_GV_TimKiem, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_GV_DiaChi))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbx_GV_TheoMaGV)
-                            .addComponent(jRadioButton1))
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(cbx_GV_TheoTenGV)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbx_GV_TheoChuyenNghanh))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2)
-                                .addGap(37, 37, 37))))
-                    .addComponent(txt_GV_NgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_GV_ChuyenNghanh, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(rbn_GV_TheoMa)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(40, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_GV_ChonAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
+                        .addComponent(rbn_GV_TheoTen)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbn_GV_TheoChuyenNganh)))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btn_GV_ChonAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1025,17 +1007,14 @@ public class frmMain extends javax.swing.JFrame {
                                     .addComponent(jLabel26)
                                     .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(txt_GV_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cbx_GV_TheoMaGV)
-                                        .addComponent(cbx_GV_TheoTenGV)
-                                        .addComponent(cbx_GV_TheoChuyenNghanh)))
+                                        .addComponent(rbn_GV_TheoMa)
+                                        .addComponent(rbn_GV_TheoTen)
+                                        .addComponent(rbn_GV_TheoChuyenNganh)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel32)
-                                    .addComponent(txt_GV_MaGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton2)
-                                    .addComponent(jRadioButton3))
-                                .addGap(14, 14, 14)
+                                    .addComponent(txt_GV_MaGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(15, 15, 15)
                                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel27)
                                     .addComponent(txt_GV_TenGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1054,7 +1033,7 @@ public class frmMain extends javax.swing.JFrame {
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_GV_ChuyenNghanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30))
-                        .addGap(0, 5, Short.MAX_VALUE))
+                        .addGap(0, 3, Short.MAX_VALUE))
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1114,10 +1093,10 @@ public class frmMain extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2985,6 +2964,29 @@ public class frmMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tbl_SV_DanhSachMouseClicked
 
+    private void txt_GV_TimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_GV_TimKiemKeyReleased
+        String TuKhoa = txt_GV_TimKiem.getText().trim();
+
+        DefaultTableModel tableModel = (DefaultTableModel)tbl_GV_DanhSach.getModel();
+        
+        if (rbn_GV_TheoMa.isSelected()) {
+            ResultSet rs = DAL.DALGiangVien.TimKiemBangMa(TuKhoa);
+            BLL.BLLGiangVien.LoadDataTimKiemBangMa(tableModel, rs);
+        }
+        if (rbn_GV_TheoTen.isSelected()) {
+            ResultSet rs = DAL.DALGiangVien.TimKiemBangTen(TuKhoa);
+            BLL.BLLGiangVien.LoadDataTimKiemBangTen(tableModel, rs);
+        }
+        if (rbn_GV_TheoChuyenNganh.isSelected()) {
+            ResultSet rs = DAL.DALGiangVien.TimKiemBangChuyenNganh(TuKhoa);
+            BLL.BLLGiangVien.LoadDataTimKiemBangChuyenNganh(tableModel, rs);
+        }
+        
+        if (TuKhoa.equals("")) {
+            BLL.BLLGiangVien.LoadData(tableModel);
+        }
+    }//GEN-LAST:event_txt_GV_TimKiemKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -3031,9 +3033,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JButton btn_Thoat;
     private javax.swing.JButton btn_Xoa;
     private javax.swing.JComboBox<String> cbb_SV_GioiTinh;
-    private javax.swing.JCheckBox cbx_GV_TheoChuyenNghanh;
-    private javax.swing.JCheckBox cbx_GV_TheoMaGV;
-    private javax.swing.JCheckBox cbx_GV_TheoTenGV;
     private javax.swing.JCheckBox cbx_SV_TenGV;
     private javax.swing.JCheckBox cbx_SV_TheoChuyenNghanh;
     private javax.swing.JCheckBox cbx_SV_TheoMaGV;
@@ -3175,9 +3174,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -3249,6 +3245,10 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField83;
     private javax.swing.JLabel lblNgayThang;
     private javax.swing.JLabel lblThoigian;
+    private javax.swing.ButtonGroup rbn_GV;
+    private javax.swing.JRadioButton rbn_GV_TheoChuyenNganh;
+    private javax.swing.JRadioButton rbn_GV_TheoMa;
+    private javax.swing.JRadioButton rbn_GV_TheoTen;
     private javax.swing.JTable tbl_CB_DanhSach;
     private javax.swing.JTable tbl_GV_DanhSach;
     private javax.swing.JTable tbl_MH_DanhSach;
